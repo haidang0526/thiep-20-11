@@ -1,0 +1,903 @@
+
+/* =========================================
+   1. CÀI ĐẶT CHUNG
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: Arial, "Segoe UI", sans-serif;
+    background: linear-gradient(
+        135deg,
+        #fff7fa,
+        #ffe5ef,
+        #fff9f0
+    );
+    color: #98566d;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+/* =========================================
+   2. NỀN VÀ ÁNH SÁNG
+========================================= */
+
+.background {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.glow {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.4;
+}
+
+.glow-one {
+    background: #ffb5d0;
+    top: -100px;
+    left: -100px;
+}
+
+.glow-two {
+    background: #f8d991;
+    right: -100px;
+    bottom: -100px;
+}
+
+#petals,
+#sparkles {
+    position: absolute;
+    inset: 0;
+}
+
+.petal {
+    position: absolute;
+    top: -30px;
+    animation: falling linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes falling {
+    0% {
+        transform: translateY(-30px) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(110vh) rotate(720deg);
+    }
+}
+
+.sparkle {
+    position: absolute;
+    color: #d6a64e;
+    animation: twinkle 2s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.2;
+        transform: scale(0.7);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.3);
+    }
+}
+
+/* =========================================
+   3. TIÊU ĐỀ
+========================================= */
+
+.header {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 45px 15px 10px;
+}
+
+.small-title {
+    color: #c49a52;
+    font-size: 11px;
+    letter-spacing: 5px;
+    margin-bottom: 12px;
+}
+
+.header h1 {
+    font-size: clamp(30px, 6vw, 55px);
+    font-style: italic;
+    color: #b85e80;
+    text-shadow: 2px 3px 10px #ffffff;
+}
+
+.header p {
+    margin-top: 12px;
+    color: #ae8b65;
+    letter-spacing: 3px;
+    font-size: 13px;
+}
+
+/* =========================================
+   4. KHU VỰC HỘP QUÀ
+========================================= */
+
+.main-container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.gift-section {
+    position: relative;
+    width: 100%;
+    min-height: 490px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    perspective: 1000px;
+}
+
+.gift-light {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: #ffcae0;
+    filter: blur(80px);
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
+.gift-box {
+    position: relative;
+    width: 200px;
+    height: 180px;
+    margin-top: 35px;
+    z-index: 3;
+    animation: giftFloat 3s ease-in-out infinite;
+}
+
+@keyframes giftFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Thân hộp quà */
+
+.gift-body {
+    position: absolute;
+    width: 200px;
+    height: 125px;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        #f8b8cf,
+        #e889ae
+    );
+    border: 2px solid #f5d58d;
+    border-radius: 5px 5px 12px 12px;
+    box-shadow: 0 15px 25px #d98ba966;
+}
+
+.gift-ribbon {
+    position: absolute;
+    left: 78px;
+    width: 38px;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        #f7d88b,
+        #fff0c3,
+        #e8bc62
+    );
+}
+
+.gift-ribbon-horizontal {
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(
+        90deg,
+        #f5d18b,
+        #fff0c3,
+        #d9ae55
+    );
+}
+
+/* Nắp hộp */
+
+.gift-lid {
+    position: absolute;
+    z-index: 5;
+    width: 220px;
+    height: 48px;
+    top: 25px;
+    left: -10px;
+    background: linear-gradient(
+        135deg,
+        #f8a9c5,
+        #e982a9
+    );
+    border: 2px solid #f3d28a;
+    border-radius: 8px;
+    transform-origin: left bottom;
+    transition: transform 1s ease, opacity 0.8s ease;
+    box-shadow: 0 5px 15px #c76d9466;
+}
+
+.lid-ribbon {
+    position: absolute;
+    width: 38px;
+    height: 100%;
+    left: 80px;
+    background: #f6d58f;
+}
+
+.bow {
+    position: absolute;
+    top: -30px;
+    left: 85px;
+    width: 50px;
+    height: 35px;
+}
+
+.bow-left,
+.bow-right {
+    position: absolute;
+    width: 35px;
+    height: 25px;
+    border: 7px solid #fff0c7;
+    border-radius: 50% 50% 0 50%;
+}
+
+.bow-left {
+    left: -22px;
+    transform: rotate(20deg);
+}
+
+.bow-right {
+    right: -22px;
+    transform: scaleX(-1) rotate(20deg);
+}
+
+.bow-center {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: #d7aa5a;
+    border-radius: 50%;
+    left: 18px;
+    top: 7px;
+}
+
+.gift-shadow {
+    position: absolute;
+    width: 230px;
+    height: 20px;
+    background: #c77e9a55;
+    filter: blur(10px);
+    bottom: -15px;
+    left: -15px;
+    border-radius: 50%;
+}
+
+.gift-box.opened .gift-lid {
+    transform: translate(-90px, -150px) rotate(-35deg);
+    opacity: 0;
+}
+
+/* =========================================
+   5. THIỆP NHỎ BAY LÊN
+========================================= */
+
+.card-preview {
+    position: absolute;
+    width: 175px;
+    height: 220px;
+    bottom: 115px;
+    z-index: 2;
+    border: 2px solid #e5c47d;
+    border-radius: 8px;
+    background: linear-gradient(
+        145deg,
+        #fffdf8,
+        #ffeaf2
+    );
+    box-shadow: 0 0 25px #e6b6c8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 15px;
+    opacity: 0;
+    transform: translateY(100px) scale(0.5);
+}
+
+.preview-content span {
+    font-size: 35px;
+}
+
+.preview-content h2 {
+    color: #bd6688;
+    font-size: 20px;
+    margin: 15px 0;
+}
+
+.preview-content p {
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.card-preview.fly {
+    animation: cardFly 1.8s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+@keyframes cardFly {
+    0% {
+        opacity: 0;
+        transform: translateY(100px) scale(0.5) rotate(-10deg);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translateY(-160px) scale(1.1) rotate(5deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(-230px) scale(0.9);
+    }
+}
+
+/* =========================================
+   6. NÚT MỞ QUÀ
+========================================= */
+
+.open-button {
+    position: relative;
+    z-index: 8;
+    margin-top: 65px;
+    padding: 16px 35px;
+    border: 1px solid #d7ae66;
+    border-radius: 50px;
+    background: linear-gradient(
+        135deg,
+        #fffaf0,
+        #f8d8e4
+    );
+    color: #a65a76;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    box-shadow: 0 5px 20px #d99bb866;
+    transition: 0.3s;
+    animation: buttonGlow 2s infinite;
+}
+
+.open-button:hover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 30px #d99bb8;
+}
+
+@keyframes buttonGlow {
+    0%, 100% {
+        box-shadow: 0 5px 15px #d99bb866;
+    }
+
+    50% {
+        box-shadow: 0 5px 30px #e6b66b;
+    }
+}
+
+.instruction {
+    position: relative;
+    z-index: 3;
+    margin-top: 18px;
+    font-size: 13px;
+    color: #aa7a8e;
+    text-align: center;
+    padding: 0 15px;
+}
+
+/* =========================================
+   7. LỚP HIỂN THỊ LÁ THƯ
+========================================= */
+
+.letter-container {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    padding: 25px 16px 35px;
+
+    /* Nền đậm hơn để không nhìn xuyên Footer phía sau */
+    background: rgba(72, 39, 57, 0.94);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.letter-container.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* =========================================
+   8. LÁ THƯ
+========================================= */
+
+.letter {
+    position: relative;
+    flex: 0 0 auto;
+
+    width: min(600px, 100%);
+    max-height: calc(100vh - 125px);
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    background: linear-gradient(
+        145deg,
+        #fffefa,
+        #fff0f5
+    );
+
+    border: 2px solid #d9b66f;
+    border-radius: 12px;
+
+    padding: 12px;
+
+    box-shadow:
+        0 0 0 5px #fff6df,
+        0 20px 60px #572b4566;
+
+    transform: translateY(70px) scale(0.85);
+    transition: transform 0.7s cubic-bezier(.2,.8,.2,1);
+}
+
+.letter-container.show .letter {
+    transform: translateY(0) scale(1);
+}
+
+.letter-content {
+    border: 1px solid #e8c98a;
+    border-radius: 7px;
+    padding: 35px 30px;
+    text-align: center;
+    background: radial-gradient(
+        circle at top,
+        #fff9f0,
+        transparent 60%
+    );
+}
+
+.letter-decoration,
+.bottom-decoration {
+    color: #c59a51;
+    font-size: 25px;
+    letter-spacing: 8px;
+}
+
+.flower-icon {
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.letter-subtitle {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #b99355;
+}
+
+.letter-content h2 {
+    font-size: 30px;
+    font-style: italic;
+    color: #c36f91;
+    margin-top: 18px;
+}
+
+.letter-content h1 {
+    font-size: clamp(22px, 5vw, 34px);
+    color: #a44d72;
+    margin-top: 10px;
+}
+
+.date {
+    color: #c59a51;
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: 7px;
+    margin-top: 10px;
+}
+
+.gold-line {
+    width: 90px;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #d7ad61,
+        transparent
+    );
+    margin: 22px auto;
+}
+
+.letter-content h3 {
+    color: #ad5d7b;
+    font-size: 20px;
+    margin-bottom: 18px;
+}
+
+.message {
+    white-space: pre-line;
+    color: #785968;
+    font-family: Arial, "Segoe UI", sans-serif;
+    font-size: 15px;
+    line-height: 1.9;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-align: left;
+    overflow-wrap: break-word;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.letter-container.show .message {
+    opacity: 1;
+    transition-delay: 0.8s;
+}
+
+.letter-footer {
+    margin-top: 25px;
+    color: #a87988;
+    line-height: 2;
+}
+
+.letter-footer p {
+    font-size: 14px;
+}
+
+.letter-footer h3 {
+    font-style: italic;
+    color: #c36b8e;
+    margin-top: 5px;
+}
+
+.bottom-decoration {
+    margin-top: 15px;
+}
+
+/* =========================================
+   9. NÚT MỞ LẠI MÓN QUÀ
+========================================= */
+
+.replay-button {
+    position: relative !important;
+
+    display: block;
+    flex: 0 0 auto;
+
+    top: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+
+    margin: 22px auto 5px !important;
+    padding: 13px 28px;
+
+    border: 1px solid #fff0d0;
+    border-radius: 30px;
+
+    color: #ffffff;
+    background: linear-gradient(
+        135deg,
+        #c36f91,
+        #a94f76
+    );
+
+    font-size: 14px;
+    font-weight: bold;
+
+    box-shadow: 0 5px 18px #d99bb866;
+
+    z-index: 25;
+    pointer-events: auto;
+
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.replay-button:hover {
+    background: #963f65;
+    transform: scale(1.05);
+}
+
+.replay-button:active {
+    transform: scale(0.96);
+}
+
+/* =========================================
+   10. NÚT NHẠC
+========================================= */
+
+.music-button {
+    position: fixed;
+    z-index: 30;
+    top: 20px;
+    right: 20px;
+
+    padding: 12px 18px;
+
+    border-radius: 30px;
+    border: 1px solid #d8b66e;
+
+    background: #fffaf0ee;
+    color: #a45b78;
+
+    font-size: 13px;
+    box-shadow: 0 3px 12px #d99bb844;
+}
+
+/* =========================================
+   11. CHÂN TRANG
+========================================= */
+
+footer {
+    position: relative;
+    z-index: 2;
+
+    display: block;
+    width: 100%;
+
+    text-align: center;
+    padding: 20px 15px 25px;
+
+    color: #b58a98;
+    font-family: Arial, "Segoe UI", sans-serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+/* =========================================
+   12. RESPONSIVE - ĐIỆN THOẠI
+========================================= */
+
+@media (max-width: 600px) {
+
+    .header {
+        padding-top: 75px;
+    }
+
+    .small-title {
+        font-size: 10px;
+        letter-spacing: 3px;
+    }
+
+    .header h1 {
+        font-size: 34px;
+    }
+
+    .header p {
+        font-size: 10px;
+        letter-spacing: 2px;
+    }
+
+    .gift-section {
+        min-height: 450px;
+    }
+
+    .gift-box {
+        transform: scale(0.9);
+    }
+
+    .gift-box.opened {
+        animation: none;
+    }
+
+    .card-preview {
+        transform-origin: center;
+    }
+
+    .letter-container {
+        padding: 15px 10px 25px;
+    }
+
+    .letter {
+        width: 100%;
+        max-height: calc(100vh - 115px);
+        padding: 7px;
+    }
+
+    .letter-content {
+        padding: 25px 17px;
+    }
+
+    .letter-content h1 {
+        font-size: 23px;
+    }
+
+    .letter-content h2 {
+        font-size: 26px;
+    }
+
+    .letter-content h3 {
+        font-size: 18px;
+    }
+
+    .message {
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    .replay-button {
+        margin-top: 18px !important;
+        margin-bottom: 5px !important;
+        padding: 12px 24px;
+        font-size: 13px;
+    }
+
+    .music-button {
+        top: 12px;
+        right: 12px;
+        padding: 10px 13px;
+        font-size: 11px;
+    }
+
+    footer {
+        padding: 15px 10px 20px;
+        font-size: 10px;
+    }
+}
+
+/* =========================================
+   13. MÀN HÌNH THẤP
+========================================= */
+
+@media (max-height: 650px) {
+
+    .letter-container {
+        padding-top: 12px;
+        padding-bottom: 15px;
+    }
+
+    .letter {
+        max-height: calc(100vh - 105px);
+    }
+
+    .letter-content {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .flower-icon {
+        font-size: 35px;
+    }
+
+    .letter-content h2 {
+        margin-top: 10px;
+    }
+
+    .gold-line {
+        margin: 15px auto;
+    }
+
+    .replay-button {
+        margin-top: 12px !important;
+    }
+}
+
+/* =========================================
+   14. HỖ TRỢ GIẢM CHUYỂN ĐỘNG
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* =========================================
+   FIX CUỐI: FOOTER ĐÈ LÊN NÚT MỞ LẠI
+========================================= */
+
+/* Đưa toàn bộ khu vực hộp quà lên lớp cao hơn Footer */
+.main-container {
+    position: relative !important;
+    z-index: 100 !important;
+}
+
+/* Lớp nền lá thư */
+.letter-container {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 9999 !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    padding: 25px 16px 35px !important;
+    background: rgba(72, 39, 57, 0.97) !important;
+}
+
+/* Lá thư */
+.letter {
+    position: relative !important;
+    flex-shrink: 0 !important;
+    z-index: 10000 !important;
+    margin: 0 auto !important;
+}
+
+/* Nút mở lại */
+.replay-button {
+    position: relative !important;
+    display: block !important;
+    flex-shrink: 0 !important;
+
+    z-index: 10001 !important;
+
+    margin: 22px auto 15px !important;
+    transform: none;
+}
+
+/* Footer luôn nằm dưới lớp lá thư */
+footer {
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* Đảm bảo nút nhạc không che lá thư */
+.music-button {
+    z-index: 10002 !important;
+}
